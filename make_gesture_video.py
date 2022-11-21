@@ -146,7 +146,7 @@ if __name__ == '__main__':
         video_out_fn = video_out_path / (trg_speaker + '_{:03d}.mp4'.format(i))
         # print(video_out_fn)
 
-        # 動画の切り出し
+        # Extract video
         cmd = 'ffmpeg -i {} -ss {} -to {} -y {}'.format(str(video_fn), start, end, str(video_out_fn))
         # print(cmd)
         subprocess.call(cmd, shell=True)
