@@ -199,6 +199,11 @@ If you want to use the transformer model, please use `./transformer/dataset.py`,
 ### Create training and test data
 The training dataset creation code `./transformer/dataset.py` creates the data including both text and audio information for model training. The created files are saved in `train-64-text-audio` instead of `train-64`, which should be used for transformer model training.
 
+* Example (Create Oliver's data)
+```shell
+python dataset.py --base_path <BASE_PATH> --speaker oliver --wordvec_file <W2V_FILE> --frames 64
+```
+
 ### Model training
 * Example (Training using Oliver's data) with 
 ```shell
@@ -209,12 +214,12 @@ python train_transformer.py --outdir_path ./out_training/ --speaker oliver --gpu
 python train_transformer.py --outdir_path ./out_training/ --speaker oliver --gpu_num 0 --base_path <BASE_PATH> --train_dir train-64-text-audio --modality audio
 ```
 
-### Model training
-* Example (Predict the Rock's test data using Oliver's trained model)
+### Evaluation
+* Example (Predict the Oliver's test data using Oliver's trained model)
 ```shell
 # Text2Gesture
-python test_transformer.py --modality text --base_path <BASE_PATH> --test_speaker rock --test_dir test-192 --model_dir oliver_YYYYMMDD-AAAAAA --model_path ./out_training/ --outdir_path ./out_test/
+python test_transformer.py --modality text --base_path <BASE_PATH> --test_speaker oliver --test_dir test-192 --model_dir oliver_YYYYMMDD-AAAAAA --model_path ./out_training/ --outdir_path ./out_test/
 
 # Speech2Gesture
-python test_transformer.py --modality audio --base_path <BASE_PATH> --test_speaker rock --test_dir test-192 --model_dir oliver_YYYYMMDD-AAAAAA --model_path ./out_training/ --outdir_path ./out_test/
+python test_transformer.py --modality audio --base_path <BASE_PATH> --test_speaker oliver --test_dir test-192 --model_dir oliver_YYYYMMDD-AAAAAA --model_path ./out_training/ --outdir_path ./out_test/
 ```
